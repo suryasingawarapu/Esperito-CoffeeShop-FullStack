@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafe Login/Signup</title>
+  <style>
+    body {
+      background-image: url(https://png.pngtree.com/background/20230813/original/pngtree-coffee-menu-agriculture-texture-parchment-photo-picture-image_4643523.jpg);
+      background-size: cover;
+      text-align: center;
+      margin-top: 13%;
+      border: 2px solid rgb(78, 14, 14);
+      margin-right: 380px;
+      margin-left: 380px;
+    }
+    input, select {
+      padding: 8px;
+      margin: 5px;
+      width: 80%;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+    .success {
+      color: green;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>Cafe Login/Signup</h2>
+
+<!-- Login Form -->
+<div id="login-form">
+  <h2>Login</h2>
+  <form id="loginForm">
+    <label for="login-username">Username:</label>
+    <input type="text" id="login-username" name="username" placeholder="Enter username"><br>
+    <span id="login-username-error" class="error"></span><br>
+
+    <label for="login-password">Password:</label>
+    <input type="password" id="login-password" name="password" placeholder="Enter password"><br>
+    <span id="login-password-error" class="error"></span><br>
+
+    <input type="submit" value="Login">
+    <p>Don't have an account? <a href="#" onclick="showSignupForm(event)">Signup</a></p>
+  </form>
+</div>
+
+<!-- Signup Form -->
+<div id="signup-form" style="display: none;">
+  <h2>Signup</h2>
+  <form id="signupForm">
+    <label for="fullname">Full Name:</label>
+    <input type="text" id="fullname" name="fullname" placeholder="Enter Fullname"><br>
+    <span id="fullname-error" class="error"></span><br>
+
+    <label for="signup-username">Username:</label>
+    <input type="text" id="signup-username" name="username" placeholder="Enter username"><br>
+    <span id="signup-username-error" class="error"></span><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter Email"><br>
+    <span id="email-error" class="error"></span><br>
+
+    <label for="signup-password">Password:</label>
+    <input type="password" id="signup-password" name="password" placeholder="Enter password"><br>
+    <span id="signup-password-error" class="error"></span><br>
+
+    <label for="Gender">Gender:</label>
+    <select id="Gender" name="Gender">
+      <option value="">Select Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select><br>
+    <span id="gender-error" class="error"></span><br>
+
+    <input type="submit" value="Signup">
+    <p>Already have an account? <a href="#" onclick="showLoginForm(event)">Login</a></p>
+  </form>
+</div>
+
+<script>
+  // Show Login Form
+  function showLoginForm(event) {
+    if (event) {
+      event.preventDefault(); // Only prevent default if an event is provided
+    }
+    document.getElementById("login-form").style.display = "block";
+    document.getElementById("signup-form").style.display = "none";
+  }
+
+  // Show Signup Form
+  function showSignupForm(event) {
+    event.preventDefault();
+    document.getElementById("login-form").style.display = "none";
+    document.getElementById("signup-form").style.display = "block";
+  }
+
+  // Live Validation for Login Form
+  document.getElementById('login-username').addEventListener('input', validateLogin);
+  document.getElementById('login-password').addEventListener('input', validateLogin);
+
+  // Live Validation for Signup Form
+  document.getElementById('fullname').addEventListener('input', validateSignup);
+  document.getElementById('signup-username').addEventListener('input', validateSignup);
+  document.getElementById('email').addEventListener('input', validateSignup);
+  document.getElementById('signup-password').addEventListener('input', validateSignup);
+  document.getElementById('Gender').addEventListener('change', validateSignup);
+
+  // Login Form Validation
+  function validateLogin() {
+    let isValid = true;
+    const username = document.getElementById('login-username').value.trim();
+    const password = document.getElementById('login-password').value;
+
+    document.getElementById('login-username-error').innerText = '';
+    document.getElementById('login-password-error').innerText = '';
+
+    if (username === '') {
+      document.getElementById('login-username-error').innerText = 'Username is required.';
+      isValid = false;
+    }
+    if (password === '') {
+      document.getElementById('login-password-error').innerText = 'Password is required.';
+      isValid = false;
+    }
+    return isValid;
+  }
+
+  // Signup Form Validation
+  function validateSignup() {
+    let isValid = true;
+    const fullname = document.getElementById('fullname').value.trim();
+    const username = document.getElementById('signup-username').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('signup-password').value;
+    const gender = document.getElementById('Gender').value;
+
+    // Clear previous error messages
+    document.getElementById('fullname-error').innerText = '';
+    document.getElementById('signup-username-error').innerText = '';
+    document.getElementById('email-error').innerText = '';
+    document.getElementById('signup-password-error').innerText = '';
+    document.getElementById('gender-error').innerText = '';
+
+    if (fullname === '') {
+        document.getElementById('fullname-error').innerText = 'Full name is required.';
+        isValid = false;
+    } else if (/\d/.test(fullname)) { // Check if fullname contains numbers
+        document.getElementById('fullname-error').innerText = 'Full name cannot contain numbers.';
+        isValid = false;
+    }
+    if (username === '') {
+        document.getElementById('signup-username-error').innerText = 'Username is required.';
+        isValid = false;
+    } else {
+        const numberCount = (username.match(/\d/g) || []).length; // Count digits in username
+        if (numberCount < 2) {
+            document.getElementById('signup-username-error').innerText = 'Username must contain at least 2 numbers.';
+            isValid = false;
+        }
+    }
+    if (email === '') {
+      document.getElementById('email-error').innerText = 'Email is required.';
+      isValid = false;
+    } else if (!/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(email)) {
+      document.getElementById('email-error').innerText = 'Email is invalid.';
+      isValid = false;
+    }
+    if (password === '') {
+      document.getElementById('signup-password-error').innerText = 'Password is required.';
+      isValid = false;
+    } else if (password.length < 8) {
+      document.getElementById('signup-password-error').innerText = 'Password must be at least 8 characters.';
+      isValid = false;
+    }
+    if (gender === '') {
+      document.getElementById('gender-error').innerText = 'Gender is required.';
+      isValid = false;
+    }
+    return isValid;
+  }
+
+  // Handle Signup Form Submission
+  document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (!validateSignup()) return;
+
+    const signupData = {
+      fullname: document.getElementById('fullname').value,
+      username: document.getElementById('signup-username').value,
+      email: document.getElementById('email').value,
+      password: document.getElementById('signup-password').value,
+      gender: document.getElementById('Gender').value
+    };
+
+    fetch('/signup-form', {  // Using POST on /signup-form
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(signupData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Signup response data:", data);
+      if (data.success) {
+        alert('Signup successful! You can now log in.');
+        showLoginForm(); // Switch to login form on success
+      } else {
+        alert('Signup failed: ' + data.message);
+      }
+    })
+    .catch(error => {
+      console.error("Signup fetch error:", error);
+      alert('Error occurred during signup! Check terminal for details.');
+    });
+  });
+
+  // Handle Login Form Submission
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (!validateLogin()) return;
+
+    const loginData = {
+      username: document.getElementById('login-username').value,
+      password: document.getElementById('login-password').value
+    };
+
+    fetch('/login-form', {  // Using POST on /login-form
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(loginData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Login response data:", data);
+      if (data.success) {
+        alert('Login successful!');
+        window.location.href = '/'; // Redirect to main page/dashboard
+      } else {
+        alert('Invalid credentials!');
+      }
+    })
+    .catch(error => {
+      console.error("Login fetch error:", error);
+      alert('Error occurred during login! Check terminal for details.');
+    });
+  });
+
+  // Initially show the login form (without passing an event)
+  showLoginForm();
+</script>
+</body>
+</html>

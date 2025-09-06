@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .menu-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #7187c0;
+            border-radius: 10px;
+        }
+
+        .menu-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 1px solid #ddd;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+
+        .item-desc {
+            color: #666;
+            font-style: italic;
+            margin: 5px 0;
+        }
+
+        .item-price {
+            color: #333;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+       body {
+            
+           
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            font-family: Papyrus, fantasy;
+            height: 150px;
+            background-color: #000000;
+            color: #fff;
+            text-align: center;
+            
+        }
+        .logo {
+            padding: 15px;
+            max-height: 125px;
+            margin-right: 1850px;
+            margin-left: 30px;
+            padding-left: 10px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color:#7187c0;
+        }
+        nav a {
+            color: #fff;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #000000;
+        }
+        .hero {
+            background: url("https://salfordcommunityleisure.co.uk/wp-content/uploads/2023/09/Cafe-discount-1699x846.jpg") no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-family: "Lucida Handwriting", cursive;
+        }
+        .container {
+            padding: 20px;
+            background-color: #90ccb2;
+        }
+
+        .menu, .about {
+            margin-bottom: 40px;
+        }
+        .menu h2, .about h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-bottom: 1px solid brown;
+            align-items: center;
+        }
+        .menu-item span {
+            font-weight: bold;
+        }
+        .menu-item span:last-child {
+            font-weight: normal;
+        }
+        .menu-item:hover {
+            background-color: rgb(255, 255, 255);
+        }
+        .menu-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .menu-item-desc {
+            font-style: italic;
+            color: #666;
+            margin-left: 10px;
+        }
+        
+        #topBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none; /* Hidden by default */
+    background-color: #007bff;
+    color: white;
+    border: 1px brown;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#topBtn:hover {
+    background-color: #0056b3;
+}
+footer {
+        background-color: #000000;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        margin-top: 20px;
+        
+    }
+    
+    .footer-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+    
+    .footer-section {
+        margin: 10px;
+    }
+
+    .footer-section a {
+        color: #90ccb2;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .footer-section a:hover {
+        color: #ffffff;
+    }
+
+    .footer-bottom {
+        margin-top: 10px;
+        font-size: 14px;
+        border-top: 1px solid #90ccb2;
+        padding-top: 10px;
+    }
+
+    </style>
+</head>
+
+
+<header>
+    <img src="https://img.freepik.com/premium-vector/vintage-coffee-logo-template_441059-214.jpg" alt="Logo" class="logo">
+    <h1 style="margin: -110px;"><u>Espresso Cafe</u><br>
+        <p style="margin:0%;"><i>"Espresso yourself and enjoy the moment."</i></p></h1>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#about">About Us</a>
+    <a href="loginform.html">Login/Signup</a>
+    <a href="reservations.html">Reservation</a>
+   
+</nav>
+<body>
+    <button id="topBtn" onclick="scrollToTop()">⬆ Top</button>
+
+
+<div class="hero">
+    <h1>Welcome to Espresso</h1>
+</div>
+
+<div class="menu-container" id="menu">
+    <h1 class="menu-title">Our Menu</h1>
+    <div class="menu-grid">
+        <div class="menu-item">
+            <div class="item-info">
+                <h3 class="item-name"><a href="https://player.onirix.com/projects/2ad3f86c392841d2b447ad7428e6b4d8/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUxNzIyLCJwcm9qZWN0SWQiOjEwNjQ3MSwicm9sZSI6MywiaWF0IjoxNzQzNjIwNDM5fQ.5Z4pnWLzNlzvWcf-N0x2-pDG7gdhJIpWmna4m5dMlxs&background=alpha&preview=false&hide_controls=false&ar_button=false"<h3 class="item-name"><a href="" style="color: black; font-weight: bold; text-decoration: none;">Cold Coffee</a></h3>
+                <p class="item-desc">Iced coffee beverage, perfectly blended with cream.</p>
+            </div>
+            <span class="item-price">₹195.00</span>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <h3 class="item-name"><a href="https://player.onirix.com/projects/cb7bb2daab6741ca88b3201e635513d9/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUxNzIyLCJwcm9qZWN0SWQiOjEwNjQ3Miwicm9sZSI6MywiaWF0IjoxNzQzNjIwNTk5fQ.npvOQbeFejMCoTkY2t2w3xfFRZ-a7Xv7chSzZ2sGZOw&background=alpha&preview=false&hide_controls=false&ar_button=false"style="color: black; font-weight: bold; text-decoration: none;">Cappuccino</a></h3>
+                <p class="item-desc">Rich espresso with steamed milk and velvety foam.</p>
+            </div>
+            <span class="item-price">₹355.00</span>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <h3 class="item-name"><a href="https://player.onirix.com/projects/026f961feeef49cf8235c9fb9f6fb636/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUxNzIyLCJwcm9qZWN0SWQiOjEwNjQ3Mywicm9sZSI6MywiaWF0IjoxNzQzNjIwNzgwfQ.pJdS1HcHsriVj0yv4mhpJrEod43Gd_9bMvas7KbZHrQ&background=alpha&preview=false&hide_controls=false&ar_button=false"style="color: black; font-weight: bold; text-decoration: none;">Hot Coffee</a></h3>
+                <p class="item-desc">Classic hot coffee brewed to perfection.</p>
+            </div>
+            <span class="item-price">₹168.00</span>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <h3 class="item-name"><a href="https://player.onirix.com/projects/3ea6d03d2a3d42b09e5211e4d19a90bc/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUxNzIyLCJwcm9qZWN0SWQiOjEwNjQ3NSwicm9sZSI6MywiaWF0IjoxNzQzNjIwOTM3fQ.HBcoTAd5MZA0Oi_v-g71-nidLPE8xqaK7YrO6WJwA34&background=alpha&preview=false&hide_controls=false&ar_button=falsestyle="color: black; font-weight: bold; text-decoration: none;">Ice Cream</a></h3
+                <p class="item-desc">Creamy delight in various flavors to sweeten your day.</p>
+            </div>
+            <span class="item-price">₹150.00</span>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <h3 class="item-name"><a href="https://player.onirix.com/projects/4cf838f724d34fadb7e4e6372f986352/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUxNzIyLCJwcm9qZWN0SWQiOjEwNjQ3Niwicm9sZSI6MywiaWF0IjoxNzQzNjIxMTY3fQ.TJAglC9MmvUOyN950i5BK8_A2oUifc4HwxBxelcnvTM&background=alpha&preview=false&hide_controls=false&ar_button=false"style="color: black; font-weight: bold; text-decoration: none;">Fries & Drink Combo</a></h3
+                <p class="item-desc">Crispy golden fries paired with your choice of beverage.</p>
+            </div>
+            <span class="item-price">₹250.00</span>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <h3 class="item-name"><a href="https://player.onirix.com/projects/ce4e759fe0444009a4c5675fbd033499/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUxNzIzLCJwcm9qZWN0SWQiOjEwNjQ3Nywicm9sZSI6MywiaWF0IjoxNzQzNjIxNDI4fQ.2CACPhFWRkpckxeuCQfjsBb8mJYijxhIX28cqgjjMns&background=alpha&preview=false&hide_controls=false&ar_button=false"style="color: black; font-weight: bold; text-decoration: none;">Burger</a></h3>
+                <p class="item-desc">Juicy patty with fresh veggies and our special sauce.</p>
+            </div>
+            <span class="item-price">₹280.00</span>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <h3 class="item-name"><a href="https://player.onirix.com/projects/6946f88ee4214f118bc81da375d1cc2f/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUxNzIzLCJwcm9qZWN0SWQiOjEwNjQ3OSwicm9sZSI6MywiaWF0IjoxNzQzNjIxNjIwfQ.hYcXe8Cl2sGmWq7a8dghWcZW4jewzw3qk3e0EPgcEM8&background=alpha&preview=false&hide_controls=false&ar_button=falsestyle="color: black; font-weight: bold; text-decoration: none;">Pizza</a></h3>
+                <p class="item-desc">Hand-tossed crust with premium toppings and melted cheese.</p>
+            </div>
+            <span class="item-price">₹450.00</span>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <h3 class="item-name"><a href="https://player.onirix.com/projects/53c23bd29e854a0a97afb5617c411bb4/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUxNzIzLCJwcm9qZWN0SWQiOjEwNjQ4MCwicm9sZSI6MywiaWF0IjoxNzQzNjIxNzM3fQ.B1VWRwDM_gqcB07umYYPnkHEO1x3s6m8TVG4WOLsw84&background=alpha&preview=false&hide_controls=false&ar_button=false"style="color: black; font-weight: bold; text-decoration: none;">Cake</a></h3>
+                <p class="item-desc">Freshly baked slice of happiness.</p>
+            </div>
+            <span class="item-price">₹220.00</span>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <h3 class="item-name"><a href="https://player.onirix.com/projects/cfbaba1c0a0d4a9783ffca5f619fefc9/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUxNzIzLCJwcm9qZWN0SWQiOjEwNjQ4Miwicm9sZSI6MywiaWF0IjoxNzQzNjIxODcxfQ.qGQ1GY8gfbbDE3aSV61S3-fAaaO9Z0b9UO6HfzRng8s&background=alpha&preview=false&hide_controls=false&ar_button=false"style="color: black; font-weight: bold; text-decoration: none;">Sushi</a></h3>
+                <p class="item-desc">Fresh rolls crafted with precision and flavor.</p>
+            </div>
+            <span class="item-price">₹380.00</span>
+        </div>
+
+        <div class="menu-item">
+            <div class="item-info">
+                <h3 class="item-name"><a href="https://player.onirix.com/projects/e900a82d7a9a44eb911e3b0ea01d5c2f/webar?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjUxNzIzLCJwcm9qZWN0SWQiOjEwNjQ4Mywicm9sZSI6MywiaWF0IjoxNzQzNjIxOTYzfQ.83YKyonmj3Gla4jiDhKdVJMBCJO4GXbyPkDd35hTzV4&background=alpha&preview=false&hide_controls=false&ar_button=false"style="color: black; font-weight: bold; text-decoration: none;">Lemonade</a></h3>
+                <p class="item-desc">Refreshing citrus drink perfect for any weather.</p>
+            </div>
+            <span class="item-price">₹140.00</span>
+        </div>
+    </div>
+</div>
+    </section>
+    <Script>
+       
+window.onscroll = function () {
+    let button = document.getElementById("topBtn");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        button.style.display = "block";
+    } else {
+        button.style.display = "none";
+    }
+};
+
+// Scroll to top smoothly
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+    </Script>
+
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p style="background-blend-mode: hard-light;"><i>Café Espresso is a place where coffee meets passion. We believe that a great cup of coffee is more than just a drink—it’s an experience. Our café is designed to be a warm and inviting space where coffee lovers can relax, connect, and enjoy the finest brews. We carefully source our coffee beans from the best sustainable farms, ensuring that every sip is rich in flavor and quality. Alongside our expertly crafted espresso, cappuccinos, and lattes, we offer a selection of freshly baked pastries, artisanal sandwiches, and indulgent desserts. Whether you’re stopping by for your morning coffee, a casual meeting, or a quiet moment alone, Café Espresso promises a delightful experience with every visit. Come and enjoy the perfect blend of great coffee, cozy ambiance, and unforgettable moments.</i></p>
+    </section>
+    
+</div>
+
+</body>
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p>📍 Address: Universal Ai University,karjat-410201</p>
+            <p>📞 Phone: +91 9699434495</p>
+            <p>✉ Email: info@cafeespresso.com</p>
+        </div>
+        
+
+        <div class="footer-section">
+            <h3>Opening Hours</h3>
+            <p>Monday - Friday: 8 AM - 10 PM</p>
+            <p>Saturday - Sunday: 9 AM - 11 PM</p>
+        </div>
+    </div>
+    
+    <p class="footer-bottom">© 2025 Café Espresso. All Rights Reserved.</p>
+</footer>
+</html>

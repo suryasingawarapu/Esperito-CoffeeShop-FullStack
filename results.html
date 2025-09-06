@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Submission Results</title>
+</head>
+
+<body style="background-color:#90ccb2 ;">
+    <h1>Submission Results</h1>
+    <div id="results"></div>
+    <script>
+        // Function to get URL parameters
+        function getUrlParams() {
+            const params = {};
+            window.location.search.substr(1).split('&').forEach(function(param) {
+                const [key, value] = param.split('=');
+                params[decodeURIComponent(key)] = decodeURIComponent(value || '');
+            });
+            return params;
+        }
+
+        // Display results
+        function displayResults() {
+            const params = getUrlParams();
+            let resultsDiv = document.getElementById('results');
+
+            // Display login results
+            if (params.username) {
+                resultsDiv.innerHTML += `<p>Username: ${params.username}</p>`;
+                resultsDiv.innerHTML += `<p>Password: ${params.password}</p>`;
+            }
+
+            // Display signup results
+            if (params.fullname) {
+                resultsDiv.innerHTML += `<p>Full Name: ${params.fullname}</p>`;
+                resultsDiv.innerHTML += `<p>Username: ${params.username}</p>`;
+                resultsDiv.innerHTML += `<p>Email: ${params.email}</p>`;
+                resultsDiv.innerHTML += `<p>Password: ${params.password}</p>`;
+                resultsDiv.innerHTML += `<p>Gender: ${params.gender}</p>`;
+            }
+        }
+
+        displayResults();
+    </script>
+</body>
+
+</html>

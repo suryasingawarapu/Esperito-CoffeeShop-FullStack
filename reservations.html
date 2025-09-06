@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cafe Reservation - Espresso</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://png.pngtree.com/background/20230813/original/pngtree-coffee-menu-agriculture-texture-parchment-photo-picture-image_4643523.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      background: rgba(255, 255, 255, 0.9);
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 500px;
+      border-radius: 8px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+    }
+    .message {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 1em;
+    }
+    .reservations-list {
+      background: rgba(255, 255, 255, 0.9);
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h2>Cafe Reservation Form</h2>
+  <form id="reservationForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+
+    <label for="time">Time:</label>
+    <input type="time" id="time" name="time" required>
+
+    <label for="guests">Number of Guests:</label>
+    <input type="number" id="guests" name="guests" min="1" max="10" required>
+
+    <label for="occasion">Occasion:</label>
+    <select id="occasion" name="occasion">
+      <option value="">Select Occasion</option>
+      <option value="Birthday">Birthday</option>
+      <option value="Anniversary">Anniversary</option>
+      <option value="Business Meeting">Business Meeting</option>
+      <option value="Other">Other</option>
+    </select>
+
+    <input type="submit" value="Make Reservation">
+    <div class="message" id="reservation-message"></div>
+  </form>
+
+  <div class="reservations-list">
+    <h3>Existing Reservations</h3>
+    <table id="reservationsTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Guests</th>
+          <th>Occasion</th>
+          <th>Submitted</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Reservations will be dynamically inserted here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Handle reservation form submission
+    document.getElementById('reservationForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        date: document.getElementById('date').value,
+        time: document.getElementById('time').value,
+        guests: document.getElementById('guests').value,
+        occasion: document.getElementById('occasion').value,
+        timestamp: new Date().toLocaleString()
+      };
+
+      fetch('/submit_reservation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        const messageDiv = document.getElementById('reservation-message');
+        if(data.success){
+          messageDiv.style.color = 'green';
+          messageDiv.textContent = data.message;
+          loadReservations();
+        } else {
+          messageDiv.style.color = 'red';
+          messageDiv.textContent = data.message;
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    });
+
+    // Function to load existing reservations from the server
+    function loadReservations() {
+      fetch('/get_reservations')
+      .then(response => response.json())
+      .then(data => {
+        const tbody = document.getElementById('reservationsTable').querySelector('tbody');
+        tbody.innerHTML = '';
+        if(data.success && data.reservations.length > 0){
+          data.reservations.forEach(reservation => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td>${reservation.name}</td>
+              <td>${reservation.email}</td>
+              <td>${reservation.date}</td>
+              <td>${reservation.time}</td>
+              <td>${reservation.guests}</td>
+              <td>${reservation.occasion}</td>
+              <td>${reservation.timestamp || ''}</td>
+            `;
+            tbody.appendChild(row);
+          });
+        } else {
+          const row = document.createElement('tr');
+          row.innerHTML = `<td colspan="7" style="text-align:center;">No reservations found.</td>`;
+          tbody.appendChild(row);
+        }
+      })
+      .catch(error => console.error('Error fetching reservations:', error));
+    }
+
+    // Load reservations when the page loads
+    window.onload = loadReservations;
+  </script>
+</body>
+</html>
